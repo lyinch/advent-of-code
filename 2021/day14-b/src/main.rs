@@ -1,8 +1,10 @@
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::time::SystemTime;
 
 fn main() {
+    let now = SystemTime::now();
     let br = BufReader::new(File::open("input.txt").unwrap());
     let mut lines = br.lines();
 
@@ -64,4 +66,6 @@ fn main() {
     }
 
     println!("{}", (max.1 - min.1)/2);
+    let end = SystemTime::now();
+    println!("{:?}", end.duration_since(now).unwrap());
 }
